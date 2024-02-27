@@ -1,0 +1,568 @@
+{
+  "version": "0.1.0",
+  "name": "dojo",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "rootData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "program",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "programData",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "programAdmin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "grant",
+      "accounts": [
+        {
+          "name": "rootData",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "program",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "programData",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "programAdmin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "rbacUser",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "inpRootNonce",
+          "type": "u8"
+        },
+        {
+          "name": "inpRole",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "revoke",
+      "accounts": [
+        {
+          "name": "rootData",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "program",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "programData",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "programAdmin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "rbacUser",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "inpRootNonce",
+          "type": "u8"
+        },
+        {
+          "name": "inpRole",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "registerAccessToken",
+      "accounts": [
+        {
+          "name": "rootData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authData",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authUser",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "dojoAccessToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "dojoAgent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "accessTokenMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "paymentMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "paymentVault",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "externalKey",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "feePayer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "year",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "closeAccessToken",
+      "accounts": [
+        {
+          "name": "rootData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authData",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authUser",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "dojoAccessToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "feeReceiver",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "purchaseAccessToken",
+      "accounts": [
+        {
+          "name": "dojoAccessToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "dojoAgent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "paymentTokenAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "paymentTokenSrc",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "paymentTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "paymentTokenMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "feePayer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "accessTokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "accessTokenDest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "beltOwner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "beltMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "beltTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "beltMetadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "beltMasterEdition",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "retrieveAccessToken",
+      "accounts": [
+        {
+          "name": "dojoAccessToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "dojoAgent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "externalNonce",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "feePayer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "accessTokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "accessTokenDest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "beltOwner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "beltMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "beltTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "beltMetadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "beltMasterEdition",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ixSysvar",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMetadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "nonce",
+          "type": "u128"
+        }
+      ]
+    },
+    {
+      "name": "unfreezeAccessToken",
+      "accounts": [
+        {
+          "name": "rootData",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authData",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authUser",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "dojoAgent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "accessTokenMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "accessTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "RootData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "rootAuthority",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DojoAccessToken",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "year",
+            "type": "u16"
+          },
+          {
+            "name": "sequence",
+            "type": "u8"
+          },
+          {
+            "name": "accessTokenMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "paymentMint",
+            "type": "publicKey"
+          },
+          {
+            "name": "paymentVault",
+            "type": "publicKey"
+          },
+          {
+            "name": "externalKey",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExternalNonce",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "ok",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "DT",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "UserRBACMap"
+          },
+          {
+            "name": "UserRBAC"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Role",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "NetworkAdmin"
+          },
+          {
+            "name": "ManageAccessToken"
+          },
+          {
+            "name": "BeltMinter"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "SigVerificationFailed",
+      "msg": "Signature verification failed"
+    }
+  ],
+  "metadata": {
+    "address": "DTMGr8iiYXYUSpvBpLm3HtC15T9tNYySzXxfsTrGakQt"
+  }
+}

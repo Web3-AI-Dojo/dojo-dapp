@@ -1,28 +1,32 @@
 <script setup>
-import { useRoute } from 'vue-router';
-import store from './vuex';
+import { useRoute } from 'vue-router'
+import store from './vuex'
 import 'solana-wallets-vue/styles.css'
-import AppBar from './components/AppBar';
-import FooterBar from './components/FooterBar';
+import AppBar from './components/AppBar'
+import FooterBar from './components/FooterBar'
 import BasicPage from './pages/BasicPage'
 import {
   LedgerWalletAdapter,
   PhantomWalletAdapter,
+  SolflareWalletAdapter,
   SlopeWalletAdapter,
   TorusWalletAdapter,
-} from '@solana/wallet-adapter-wallets';
-import { initWallet } from 'solana-wallets-vue';
+} from '@solana/wallet-adapter-wallets'
+import { initWallet } from 'solana-wallets-vue'
+import { initWorkspace } from '@/composables'
 
 const route = useRoute()
 
 const wallets = [
   new PhantomWalletAdapter(),
+  new SolflareWalletAdapter(),
   new SlopeWalletAdapter(),
   new TorusWalletAdapter(),
   new LedgerWalletAdapter(),
-];
+]
 
-initWallet({ wallets, autoConnect: store.state.autoConnect});
+initWallet({ wallets, autoConnect: store.state.autoConnect})
+initWorkspace()
 </script>
 
 <template>
