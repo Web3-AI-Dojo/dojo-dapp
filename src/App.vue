@@ -30,9 +30,7 @@ initWorkspace()
 </script>
 
 <template>
-  <div>
-
-
+    <div>
         <!-- Main -->
         <main class="flex flex-col h-screen">
           <header>

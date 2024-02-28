@@ -1,7 +1,8 @@
 <script setup>
 import store from '../vuex'
-import { watch } from 'vue'
+import { inject, watch } from 'vue'
 import { useWorkspace } from '@/composables'
+import { useRoute } from 'vue-router'
 const { clusterApiUrl, Keypair, Transaction, PublicKey, SystemProgram, SYSVAR_RENT_PUBKEY } = require('@solana/web3.js')
 const {
     TOKEN_PROGRAM_ID,
@@ -20,9 +21,11 @@ const { createUmi } = require("@metaplex-foundation/umi-bundle-defaults")
 const { publicKey } = require("@metaplex-foundation/umi")
 
 const { wallet, program, provider, connection } = useWorkspace()
+const axios = inject('axios')
+const route = useRoute()
 
 async function getAccessTokenWithUSDC () {
-    console.log('Get access token with USDC')
+    //console.log('Get access token with USDC')
     const umi = createUmi(clusterApiUrl('devnet'))
     const year = 2025
     var yearBuffer = Buffer.alloc(2)
@@ -77,7 +80,37 @@ async function getAccessTokenWithUSDC () {
 }
 
 async function getAccessTokenWithCard () {
-    console.log('Get access token with card')
+    //console.log('Get access token with card')
+    const res = await axios.post("https://aidojo.us/api/dojo/checkout", {command: 'get_payment_url'})
+    if (res.status === 200) {
+        document.location.href = res.data.url
+    }
+}
+
+async function confirmCardPurchase (payment) {
+    const res = await axios.post("https://aidojo.us/api/dojo/checkout", {
+        command: 'confirm_payment',
+        payment: payment,
+    })
+    if (res.status === 200) {
+        console.log(res.data)
+        return res.data.paid
+    } else {
+        return false
+    }
+}
+
+if (route.query.payment) {
+    confirmCardPurchase(route.query.payment).then((paid) => {
+        if (paid) {
+            console.log('Purchase confirmed')
+        } else {
+            console.log('Purchase pending')
+        }
+    }).catch((error) => {
+        console.log('Purchase error')
+        console.log(error)
+    })
 }
 
 </script>
