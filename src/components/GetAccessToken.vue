@@ -23,11 +23,11 @@ const { publicKey } = require("@metaplex-foundation/umi")
 const { wallet, program, provider, connection } = useWorkspace()
 const axios = inject('axios')
 const route = useRoute()
+const umi = createUmi(clusterApiUrl('devnet'))
+const year = 2025
 
 async function getAccessTokenWithUSDC () {
     //console.log('Get access token with USDC')
-    const umi = createUmi(clusterApiUrl('devnet'))
-    const year = 2025
     var yearBuffer = Buffer.alloc(2)
     yearBuffer.writeUInt16BE(year)
     const prefix = Buffer.from('access_token', 'utf8')
@@ -81,9 +81,28 @@ async function getAccessTokenWithUSDC () {
 
 async function getAccessTokenWithCard () {
     //console.log('Get access token with card')
+    var yearBuffer = Buffer.alloc(2)
+    yearBuffer.writeUInt16BE(year)
+    const prefix = Buffer.from('access_token', 'utf8')
+    const dojoTokenData = PublicKey.findProgramAddressSync([prefix, yearBuffer], program.value.programId)[0]
+    const dojoAgent = PublicKey.findProgramAddressSync([program.value.programId.toBuffer()], program.value.programId)[0]
+    const dojoTokenRecord = await program.value.account.dojoAccessToken.fetch(dojoTokenData)
+    const accessTokenMint = dojoTokenRecord.accessTokenMint
+    const accessTokenData = await getMint(connection, accessTokenMint)
+    const accessTokenDest = getAssociatedTokenAddressSync(accessTokenMint, wallet.value.publicKey)
+    const beltMint = Keypair.generate()
+    const beltTokenAccount = getAssociatedTokenAddressSync(beltMint.publicKey, wallet.value.publicKey)
+    const beltMetadata = findMetadataPda(umi, { mint: publicKey(beltMint.publicKey) })[0]
+    const beltMasterEdition = findMasterEditionPda(umi, { mint: publicKey(beltMint.publicKey) })[0]
     const res = await axios.post("https://aidojo.us/api/dojo/checkout", {
         command: 'get_payment_url',
         wallet: wallet.value.publicKey,
+        accounts: {
+            dojo_access_token: dojoTokenData.toString(),
+            dojo_agent: dojoAgent.toString(),
+            access_token_mint: accessTokenMint.toString(),
+            access_token_dest: accessTokenDest.toString(),
+        },
     })
     if (res.status === 200) {
         document.location.href = res.data.url
