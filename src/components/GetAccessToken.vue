@@ -81,7 +81,10 @@ async function getAccessTokenWithUSDC () {
 
 async function getAccessTokenWithCard () {
     //console.log('Get access token with card')
-    const res = await axios.post("https://aidojo.us/api/dojo/checkout", {command: 'get_payment_url'})
+    const res = await axios.post("https://aidojo.us/api/dojo/checkout", {
+        command: 'get_payment_url',
+        wallet: wallet.value.publicKey,
+    })
     if (res.status === 200) {
         document.location.href = res.data.url
     }
@@ -117,21 +120,16 @@ if (route.query.payment) {
 
 <template>
     <div>
-        <button
-            class="px-8 m-2 btn bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..."
-            @click="getAccessTokenWithUSDC"
-        >
-            <span>
-                Buy With USDC
-            </span>
-        </button>
-        <button
-            class="px-8 m-2 btn bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..."
-            @click="getAccessTokenWithCard"
-        >
-            <span>
-                Buy With Card
-            </span>
-        </button>
+        <template v-if="wallet">
+            <button class="px-8 m-2 btn bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..." @click="getAccessTokenWithUSDC">
+                <span>Buy With USDC</span>
+            </button>
+            <button class="px-8 m-2 btn bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..." @click="getAccessTokenWithCard">
+                <span>Buy With Card</span>
+            </button>
+        </template>
+        <template v-else>
+            <em class="text-slate-300">Connect Wallet to Purchase an Access Token</em>
+        </template>
     </div>
 </template>
