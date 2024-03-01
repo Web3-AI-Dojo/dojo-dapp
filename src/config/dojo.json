@@ -324,7 +324,12 @@
           "isSigner": false
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "collection",
+          "type": "string"
+        }
+      ]
     },
     {
       "name": "retrieveAccessToken",
@@ -419,6 +424,10 @@
         {
           "name": "nonce",
           "type": "u128"
+        },
+        {
+          "name": "collection",
+          "type": "string"
         }
       ]
     },

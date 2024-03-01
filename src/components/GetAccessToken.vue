@@ -51,30 +51,33 @@ async function getAccessTokenWithUSDC () {
         wallet.value.publicKey,
         accessTokenMint
     ))
-    tx.add(await program.value.instruction.purchaseAccessToken({
-        accounts: {
-            dojoAccessToken: dojoTokenData,
-            dojoAgent: dojoAgent,
-            paymentTokenAuthority: provider.value.wallet.publicKey,
-            paymentTokenSrc: paymentTokenSrc,
-            paymentTokenVault: paymentTokenVault,
-            paymentTokenMint: paymentMint,
-            accessTokenMint: accessTokenMint,
-            accessTokenDest: accessTokenDest,
-            feePayer: wallet.value.publicKey,
-            beltOwner: wallet.value.publicKey,
-            beltMint: beltMint.publicKey,
-            beltTokenAccount: beltTokenAccount,
-            beltMetadata: new PublicKey(beltMetadata),
-            beltMasterEdition: new PublicKey(beltMasterEdition),
-            tokenProgram: TOKEN_PROGRAM_ID,
-            associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
-            tokenMetadataProgram: MPL_TOKEN_METADATA_PROGRAM_ID,
-            systemProgram: SystemProgram.programId,
-            rent: SYSVAR_RENT_PUBKEY,
-        },
-        signers: [beltMint],
-    }))
+    tx.add(await program.value.instruction.purchaseAccessToken(
+        "GBSrREYNfrUEsqJRgF17DF6HBHtpg8UZfKKBTTQobKkH", // Red Belt Collection
+        {
+            accounts: {
+                dojoAccessToken: dojoTokenData,
+                dojoAgent: dojoAgent,
+                paymentTokenAuthority: provider.value.wallet.publicKey,
+                paymentTokenSrc: paymentTokenSrc,
+                paymentTokenVault: paymentTokenVault,
+                paymentTokenMint: paymentMint,
+                accessTokenMint: accessTokenMint,
+                accessTokenDest: accessTokenDest,
+                feePayer: wallet.value.publicKey,
+                beltOwner: wallet.value.publicKey,
+                beltMint: beltMint.publicKey,
+                beltTokenAccount: beltTokenAccount,
+                beltMetadata: new PublicKey(beltMetadata),
+                beltMasterEdition: new PublicKey(beltMasterEdition),
+                tokenProgram: TOKEN_PROGRAM_ID,
+                associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
+                tokenMetadataProgram: MPL_TOKEN_METADATA_PROGRAM_ID,
+                systemProgram: SystemProgram.programId,
+                rent: SYSVAR_RENT_PUBKEY,
+            },
+            signers: [beltMint],
+        }
+    ))
     const res = await provider.value.sendAndConfirm(tx, [beltMint], {skipPreflight: true})
     console.log(res)
 }
