@@ -143,15 +143,15 @@ if (route.query.payment) {
 <template>
     <div>
         <template v-if="wallet">
-            <button class="px-8 m-2 btn bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..." @click="getAccessTokenWithUSDC">
-                <span>Buy With USDC</span>
+            <button class="px-8 m-2 btn bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500" style="color: #FFF;" @click="getAccessTokenWithUSDC">
+                Join with USDC
             </button>
-            <button class="px-8 m-2 btn bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500 ..." @click="getAccessTokenWithCard">
-                <span>Buy With Card</span>
+            <button class="px-8 m-2 btn bg-gradient-to-r from-[#9945FF] to-[#14F195] hover:from-pink-500 hover:to-yellow-500" style="color: #FFF;" @click="getAccessTokenWithCard">
+                Join with Card
             </button>
         </template>
         <template v-else>
-            <em class="text-slate-300">Connect Wallet to Purchase an Access Token</em>
+            <em style="font-size: 1.2em;">Connect Solana Wallet to Join</em>
         </template>
     </div>
 </template>

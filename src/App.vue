@@ -2,15 +2,12 @@
 import { useRoute } from 'vue-router'
 import store from './vuex'
 import 'solana-wallets-vue/styles.css'
-import AppBar from './components/AppBar'
-import FooterBar from './components/FooterBar'
-import BasicPage from './pages/BasicPage'
 import {
-  LedgerWalletAdapter,
-  PhantomWalletAdapter,
-  SolflareWalletAdapter,
-  SlopeWalletAdapter,
-  TorusWalletAdapter,
+    LedgerWalletAdapter,
+    PhantomWalletAdapter,
+    SolflareWalletAdapter,
+    SlopeWalletAdapter,
+    TorusWalletAdapter,
 } from '@solana/wallet-adapter-wallets'
 import { initWallet } from 'solana-wallets-vue'
 import { initWorkspace } from '@/composables'
@@ -18,28 +15,17 @@ import { initWorkspace } from '@/composables'
 const route = useRoute()
 
 const wallets = [
-  new PhantomWalletAdapter(),
-  new SolflareWalletAdapter(),
-  new SlopeWalletAdapter(),
-  new TorusWalletAdapter(),
-  new LedgerWalletAdapter(),
+    new PhantomWalletAdapter(),
+    new SolflareWalletAdapter(),
+    new SlopeWalletAdapter(),
+    new TorusWalletAdapter(),
+    new LedgerWalletAdapter(),
 ]
 
-initWallet({ wallets, autoConnect: store.state.autoConnect})
+initWallet({ wallets, autoConnect: true})
 initWorkspace()
 </script>
 
 <template>
-    <div>
-        <!-- Main -->
-        <main class="flex flex-col h-screen">
-          <header>
-              <title>Solana Scaffold Lite</title>
-          </header>
-          <!-- AppBar -->
-          <app-bar class="block"></app-bar>
-          <router-view class="mx-auto h-5/6 block"></router-view>
-          <footer-bar></footer-bar>
-        </main>
-    </div>
+    <router-view></router-view>
 </template>
