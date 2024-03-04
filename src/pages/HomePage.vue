@@ -1,10 +1,116 @@
 <script setup>
+import { ref, inject } from 'vue'
 import { useWallet, WalletMultiButton } from 'solana-wallets-vue'
+import { useWorkspace } from '@/composables'
+import { Line } from 'vue-chartjs'
+import {
+    Chart as ChartJS,
+    Title,
+    Legend,
+    Filler,
+    Tooltip,
+    BarElement,
+    LinearScale,
+    LineElement,
+    PointElement,
+    CategoryScale,
+} from 'chart.js'
 import GetAccessToken from '../components/GetAccessToken'
 import store from '../vuex'
 import pkg from '../../package.json'
 
-const { connected, ready, readyState, disconnect } = useWallet()
+const axios = inject('axios')
+const { PublicKey } = require('@solana/web3.js')
+const { program } = useWorkspace()
+const { readyState } = useWallet()
+ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend, Filler)
+
+async function getAccessTokenData () {
+    const year = 2025
+    var yearBuffer = Buffer.alloc(2)
+    yearBuffer.writeUInt16BE(year)
+    const prefix = Buffer.from('access_token', 'utf8')
+    const dojoTokenData = PublicKey.findProgramAddressSync([prefix, yearBuffer], program.value.programId)[0]
+    const res = await axios.post("https://aidojo.us/dojo_access_token", {
+        account: dojoTokenData.toString(),
+    })
+    if (res.status === 200) {
+        return res.data
+    } else {
+        return false
+    }
+}
+
+function joinPrice(i) {
+    var j = ((i/256) * ((2500 + (1225 / 256)) - (640 * 2))) + 640
+    j = j * 100
+    j = Math.round(j)
+    return j / 100
+}
+
+function generateChartData(current) {
+    var labels = []
+    var datasets = []
+    var price
+    var i
+    var j
+    if (current == null && current > 0) {
+        var data = []
+        for (i = 0; i <= 256; i++) {
+            price = joinPrice(i)
+            labels.push(i)
+            data.push(price)
+        }
+        datasets.push({
+            label: 'Price',
+            backgroundColor: '#f87979',
+            data: data,
+        })
+    } else {
+        var data1 = []
+        var data2 = []
+        for (i = 0; i <= current - 1; i++) {
+            price = joinPrice(i)
+            labels.push(i)
+            data1.push([i, price])
+        }
+        for (i = current; i <= 255; i++) {
+            price = joinPrice(i)
+            labels.push(i)
+            data2.push([i, price])
+        }
+        datasets.push({
+            label: 'Sold',
+            backgroundColor: '#ff0000',
+            data: data1,
+            fill: 'origin',
+        })
+        datasets.push({
+            label: 'Available',
+            backgroundColor: '#0000ff',
+            data: data2,
+        })
+
+    }
+    return {
+        labels: labels,
+        datasets: datasets,
+    }
+}
+
+var currentPrice = ref('')
+var chartData = ref(generateChartData(null))
+var chartOpts = {
+    responsive: true,
+}
+
+getAccessTokenData().then((data) => {
+    currentPrice.value = '$' + joinPrice(data.sequence)
+    chartData.value = generateChartData(data.sequence)
+    //console.log('Got Token Data:')
+    //console.log(data)
+})
+
 </script>
 
 <template>
@@ -23,7 +129,7 @@ const { connected, ready, readyState, disconnect } = useWallet()
         <section id="banner">
             <div style="display: flex; justify-content: center;">
                 <div>
-                    <img class="img" src="/images/fighter.png" alt="AI Dojo Fighter" />
+                    <img class="img" src="/images/fighter.png" alt="AI Dojo Fighter"/>
                     <br/>
                 </div>
             </div>
@@ -46,6 +152,14 @@ const { connected, ready, readyState, disconnect } = useWallet()
             </div>
         </section>
 
+        <section>
+            <h1 class="text-center mb-3">2024 + 2025</h1>
+            <h1 class="text-center">Access Token Price: {{ currentPrice }}</h1>
+            <div class="m-10" style="background-color: white; border-radius: 5px;">
+                <Line :data="chartData" :options="chartOps" style="height: 500px; width: 100%;"/>
+            </div>
+        </section>
+    
         <!-- One -->
         <section id="one" class="wrapper style1 special">
             <div class="inner">
