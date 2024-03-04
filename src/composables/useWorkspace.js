@@ -13,7 +13,8 @@ export const useWorkspace = () => workspace
 
 export const initWorkspace = () => {
     const wallet = useAnchorWallet()
-    const connection = new Connection(clusterApiUrl('devnet'), commitment)
+    //const connection = new Connection(clusterApiUrl('devnet'), commitment)
+    const connection = new Connection(clusterApiUrl('mainnet-beta'), commitment)
     const provider = computed(() => new AnchorProvider(connection, wallet.value, {
         preflightCommitment,
         commitment,

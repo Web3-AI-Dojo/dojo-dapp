@@ -23,8 +23,11 @@ const { publicKey } = require("@metaplex-foundation/umi")
 const { wallet, program, provider, connection } = useWorkspace()
 const axios = inject('axios')
 const route = useRoute()
-const umi = createUmi(clusterApiUrl('devnet'))
+//const umi = createUmi(clusterApiUrl('devnet'))
+const umi = createUmi(clusterApiUrl('mainnet-beta'))
 const year = 2025
+//const beltCollection = "GBSrREYNfrUEsqJRgF17DF6HBHtpg8UZfKKBTTQobKkH" // Red Belt Collection (devnet)
+const beltCollection = "6RpCruBYSsb7uiXyTU593g4URoN3oFiFmJ82v6JbLetz" // Red Belt Collection (mainnet)
 
 async function getAccessTokenWithUSDC () {
     //console.log('Get access token with USDC')
@@ -52,7 +55,7 @@ async function getAccessTokenWithUSDC () {
         accessTokenMint
     ))
     tx.add(await program.value.instruction.purchaseAccessToken(
-        "GBSrREYNfrUEsqJRgF17DF6HBHtpg8UZfKKBTTQobKkH", // Red Belt Collection
+        beltCollection,
         {
             accounts: {
                 dojoAccessToken: dojoTokenData,
