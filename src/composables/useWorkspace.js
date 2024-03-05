@@ -14,7 +14,7 @@ export const useWorkspace = () => workspace
 export const initWorkspace = () => {
     const wallet = useAnchorWallet()
     //const connection = new Connection(clusterApiUrl('devnet'), commitment)
-    const connection = new Connection(clusterApiUrl('mainnet-beta'), commitment)
+    const connection = new Connection('https://withered-withered-bridge.solana-mainnet.quiknode.pro/15496b6eaef4b2d99c35cd91f260047219b399f6/', commitment)
     const provider = computed(() => new AnchorProvider(connection, wallet.value, {
         preflightCommitment,
         commitment,
