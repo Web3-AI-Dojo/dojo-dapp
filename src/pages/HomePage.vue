@@ -181,23 +181,20 @@ getAccessTokenData().then((data) => {
         <section id="two" class="wrapper alt style2">
             <section class="spotlight">
                 <div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
-                    <h2>Magna primis lobortis<br />
-                    sed ullamcorper</h2>
-                    <p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+                    <h2>Dojo Location</h2>
+                    <p><em>Exit the Matrix:</em> A home base where members can hang out.<br/>Delegate associates to join your missions.</p>
                 </div>
             </section>
             <section class="spotlight">
                 <div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
-                    <h2>Tortor dolore feugiat<br />
-                    elementum magna</h2>
-                    <p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+                    <h2>Belt Rankings<br/>via NFT</h2>
+                    <p>Level up your belt ranking by completing missions:<br/>1. Red, 2. Blue, 3. Green, 4. Cyan, 5. Magenta, 6. Yellow, and 7. Key</p>
                 </div>
             </section>
             <section class="spotlight">
                 <div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
-                    <h2>Augue eleifend aliquet<br />
-                    sed condimentum</h2>
-                    <p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+                    <h2>Post-modern salon</h2>
+                    <p>The cross-roads of cool: technology, business, and dialogue.<br/>Pooling code, data, and knowledge for the greater good.</p>
                 </div>
             </section>
         </section>
@@ -206,33 +203,33 @@ getAccessTokenData().then((data) => {
         <section id="three" class="wrapper style3 special">
             <div class="inner">
                 <header class="major">
-                    <h2>Accumsan mus tortor nunc aliquet</h2>
+                    <h2>Network with elite builders</h2>
                     <p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
                     fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
                 </header>
                 <ul class="features">
                     <li class="icon fa-paper-plane">
-                        <h3>Arcu accumsan</h3>
+                        <h3>Exclusive SF Club</h3>
                         <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
                     </li>
                     <li class="icon solid fa-laptop">
-                        <h3>Ac Augue Eget</h3>
-                        <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+                        <h3>Build AGI</h3>
+                        <p>See the latest techniques and best practices for building with AI and blockchain.</p>
                     </li>
                     <li class="icon solid fa-code">
-                        <h3>Mus Scelerisque</h3>
+                        <h3>Startup Launchpad</h3>
                         <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
                     </li>
                     <li class="icon solid fa-headphones-alt">
-                        <h3>Mauris Imperdiet</h3>
+                        <h3>Demo Scene</h3>
                         <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
                     </li>
                     <li class="icon fa-heart">
-                        <h3>Aenean Primis</h3>
+                        <h3>DAO Community</h3>
                         <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
                     </li>
                     <li class="icon fa-flag">
-                        <h3>Tortor Ut</h3>
+                        <h3>Airdrop List</h3>
                         <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
                     </li>
                 </ul>
